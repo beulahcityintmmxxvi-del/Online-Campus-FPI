@@ -5,3 +5,4 @@ PyMySQL
 Python-dotenv
 scikit-learn
 joblib
+gunicorn
