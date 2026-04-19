@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>{% block title %}UniSafe-Pro | Smart Campus Safety{% endblock %}</title>
+
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <!-- NAVBAR (fixed) -->
+  <header class="top-nav fixed">
+    <div class="nav-container">
+
+      <!-- Brand -->
+      <a class="brand" href="{{ url_for('public_bp.home') }}">
+        <span class="brand-icon">🛡️</span>
+        <span class="brand-text">UniSafe-Pro</span>
+      </a>
+
+      <!-- Toggle button (mobile) -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Menu -->
+      <nav class="nav-menu" id="navMenu">
+        {% block home_nav_buttons %}{% endblock %}
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- FLASH MESSAGES -->
+  <div class="flash-wrap">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash flash-{{ category }} auto-hide" role="alert">
+            <span class="flash-text">{{ message }}</span>
+            <button type="button" class="flash-close" aria-label="Close">×</button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <main class="page-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© 2026 UniSafe-Pro | Smart Campus Safety System</p>
+    </div>
+  </footer>
+
+  <!-- Auto-hide flash alerts (3 seconds) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Close button support
+      document.querySelectorAll(".flash-close").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const box = btn.closest(".flash");
+          if (box) box.remove();
+        });
+      });
+
+      // Auto-hide after 3 seconds
+      setTimeout(() => {
+        document.querySelectorAll(".flash.auto-hide").forEach(box => box.remove());
+      }, 3000);
+
+      // Mobile menu toggle
+      const toggle = document.getElementById("navToggle");
+      const menu = document.getElementById("navMenu");
+
+      if (toggle && menu) {
+        toggle.addEventListener("click", () => {
+          const isOpen = menu.classList.toggle("open");
+          toggle.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+    });
+  </script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

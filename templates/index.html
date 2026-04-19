@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}UniSafe-Pro | Home{% endblock %}
+
+{# Home-only navbar buttons #}
+{% block home_nav_buttons %}
+  <div class="nav-actions">
+    <a class="btn btn-ghost" href="{{ url_for('track_bp.track') }}">Check Report Status</a>
+    <a class="btn btn-primary" href="{{ url_for('report_bp.report') }}">Report Incident</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">Smart Campus Safety & Incident Reporting System</h1>
+
+    <p class="hero-subtitle">
+      An AI-powered platform for intelligent incident reporting, risk prediction,
+      and case management using <b>TF-IDF</b> and <b>SVM</b>.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-lg" href="{{ url_for('report_bp.report') }}">
+        📣 Report an Incident
+      </a>
+
+      <a class="btn btn-light btn-lg" href="{{ url_for('track_bp.track') }}">
+        🔎 Check Report Status
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SECTION -->
+<section class="why">
+  <div class="why-inner">
+    <h2 class="section-title">Why UniSafe-Pro?</h2>
+
+    <div class="feature-grid">
+
+      <article class="feature-card">
+        <div class="feature-icon icon-blue">🤖</div>
+        <h3>AI-Powered Classification</h3>
+        <p>
+          TF-IDF turns incident descriptions into meaningful numbers, and SVM classifies
+          and prioritizes reports consistently.
+        </p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon icon-green">🔒</div>
+        <h3>Secure Evidence</h3>
+        <p>
+          Evidence uploads are validated and stored safely, with hashing for integrity checks.
+        </p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon icon-red">📍</div>
+        <h3>Risk Zones & Visibility</h3>
+        <p>
+          Identify higher-risk locations and highlight urgent cases in the Admin dashboard.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

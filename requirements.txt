@@ -1,0 +1,7 @@
+Flask
+Flask-SQLAlchemy
+Flask-Mail
+PyMySQL
+Python-dotenv
+scikit-learn
+joblib
