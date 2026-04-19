@@ -1,5 +1,7 @@
 import os
 
+SQLALCHEMY_DATABASE_URI = "sqlite:///database.db"
+
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
