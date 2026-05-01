@@ -8,4 +8,5 @@ def login():
 
 @officer_bp.route("/dashboard")
 def dashboard():
+    print("Changes made")
     return render_template("officer/dashboard.html")
